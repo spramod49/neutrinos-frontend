@@ -12,17 +12,20 @@ export class ProductListComponent implements OnInit {
   errorMessage: string;
   products: IProducts[];
 
+  //Service Injection.
   constructor(
     private _productService: ProductService,
     private _shoppingCartService: ShoppingCartService
   ) {}
 
+  // Fetches all the products from the database and stores it in 'products' variable.
   ngOnInit() {
     this._productService.getProducts().subscribe(result => {
       this.products = result;
     }, error => (this.errorMessage = <any>error));
   }
 
+  //Adds a product to a cart.
   addToCart(id: string, addedToCart: boolean) {
     this._shoppingCartService.addToCart(id);
     this.products.forEach((product, index) => {

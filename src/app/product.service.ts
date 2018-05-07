@@ -9,6 +9,7 @@ export class ProductService {
 
   constructor(private _http: Http) {}
 
+  // Makes a http call to the server and returns all the products.
   getProducts(): Observable<IProducts[]> {
     return this._http
       .get(this._productsurl)
@@ -16,6 +17,7 @@ export class ProductService {
       .catch(this.handleError);
   }
 
+  //Throws an error if the server is down.
   private handleError(error: Response) {
     return Observable.throw(error.json().error || "Server error");
   }

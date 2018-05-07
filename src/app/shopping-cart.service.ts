@@ -15,6 +15,7 @@ export class ShoppingCartService {
   headers = new Headers({ "Content-Type": "application/json" });
   options = new RequestOptions({ headers: this.headers });
 
+  // makes the http call and initializes all the items into the cartItems array.
   initializeItems() {
     this._http.get(this._cartitemsurl).subscribe((items: Response) => {
       this.cartItems = <IProducts[]>items.json();
@@ -22,11 +23,13 @@ export class ShoppingCartService {
     });
   }
 
+  //Calls the initialize items function and returns the subject as an observable for cross component communication(Mainly the header component)
   getCartItems() {
     this.initializeItems();
     return this.cart.asObservable();
   }
 
+  //Makes a http request to add an item to the cart.
   addToCart(id: string) {
     this._http
       .post(this._cartitemsurl + "/" + id, {}, this.options)
@@ -42,6 +45,7 @@ export class ShoppingCartService {
       });
   }
 
+  //Makes a http request to remove an item from the cart.
   removeFromCart(id: string) {
     this._http
       .post(this._cartitemsurl + "/" + id, {}, this.options)
