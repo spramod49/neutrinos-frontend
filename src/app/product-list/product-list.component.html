@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3" *ngFor="let product of products">
+      <div class="card top-buffer">
+        <img class="card-img-top" [src]="product.image" alt="Card image cap">
+        <div class="card-block text-center">
+          <h4 class="card-title">{{product.name}}</h4>
+          <p class="card-text">
+            <strong>Rs. {{product.price}}</strong>
+          </p>
+          <a (click)="addToCart(product._id,product.addedToCart);" *ngIf="!product.addedToCart;">
+            <i class="fa fa-cart-plus fa-2x" aria-hidden="true"></i>
+          </a>
+          <i class="fa fa-check fa-2x" aria-hidden="true" *ngIf="product.addedToCart;"></i>
+          <p class="card-text">
+            <!-- <div> -->
+            <small class="text-muted" *ngIf="!product.addedToCart;">Add to cart</small>
+            <!-- </div> -->
+            <small class="text-muted" *ngIf="product.addedToCart;">Already added</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
