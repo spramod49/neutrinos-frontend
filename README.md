@@ -1,4 +1,4 @@
-##Install npm packages
+## Install npm packages
 First we have to install the npm package dependencies to run the angular project.
 Run `npm install` in order to do that.
 
